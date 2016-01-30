@@ -6,7 +6,6 @@ var User = require(__dirname + '/../models/user');
 var eatAuth = require(__dirname + '/../lib/eat_auth');
 
 var authRouter = module.exports = exports = express.Router();
-
 authRouter.post('/signup', jsonParser, function(req, res) {
   var user = new User();
   user.auth.basic.username = req.body.username;
@@ -15,9 +14,9 @@ authRouter.post('/signup', jsonParser, function(req, res) {
 
   user.save(function(err, data) {
     if (err) return handleError(err, res);
-
+    //profit
     data.generateToken(function(err, token) {
-      res.json({token: token});
+      res.json({token:token});
     });
   });
 });
@@ -25,28 +24,28 @@ authRouter.post('/signup', jsonParser, function(req, res) {
 authRouter.get('/signin', basicHttp, function(req, res) {
   if (!(req.auth.username && req.auth.password)) {
     console.log('no basic auth provided');
-    return res.status(401).json({msg: 'no way dude!'});
+    return res.status(401).json({msg: 'Nope! Try again.'});
   }
 
   User.findOne({'auth.basic.username': req.auth.username}, function(err, user) {
-    if(err) {
+    if (err) {
       console.log('no basic auth provided');
-      return res.status(401).json({msg: 'noooope'});
+      return res.status(401).json({msg: 'Nope! Try again.'});
     }
 
     if (!user) {
       console.log('no basic auth provided');
-      return res.status(401).json({msg: 'major fail'});
+      return res.status(401).json({msg: 'Nope! Try again.'});
     }
 
     if (!user.checkPassword(req.auth.password)) {
-      console.log('no basic auth provided');
-      return res.status(401).json({msg: 'keep failing good job'});
+     console.log('no basic auth provided');
+     return res.status(401).json({msg: 'Nope! Try again.'});
     }
 
     user.generateToken(function(err, token) {
-      res.json({token: token});
-    });
+      res.json({token:token});
+   });
   });
 });
 

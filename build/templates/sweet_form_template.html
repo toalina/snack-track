@@ -1,0 +1,18 @@
+<div>
+  <form name="{{formName}}"
+  data-ng-submit="save({sweet: sweet})">
+  <h2>{{headingText}}</h2>
+
+  <label for="sweetName">Name: </label>
+  <input type="text" id="sweetName" required data-ng-model="sweet.name">
+
+  <label for="sweetType">Sweet type:</label>
+  <input type="text" id="sweetType" data-ng-model="sweet.type" placeholder="KitKat">
+
+  <label for="sweetCalories">Calories</label>
+  <input type="text" id="sweetCalories" data-ng-model="sweet.calories" placeholder="5000">
+
+  <button type="submit">{{buttonText}}</button>
+  </form>
+  <ng-transclude></ng-transclude>
+</div>

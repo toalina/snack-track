@@ -1,0 +1,18 @@
+<div>
+  <form name="{{formName}}"
+  data-ng-submit="save({snack: snack})">
+    <h2>{{headingText}}</h2>
+
+    <label for="snackName">Name: </label>
+    <input type="text" id="snackName" required data-ng-model="snack.name" placeholder="Pringles, Hersheys...">
+
+    <label for="snackType">Snack type:</label>
+    <input type="text" id="snackType" data-ng-model="snack.type" placeholder="Chips, chocolate...">
+
+    <label for="snackCalories">Calories</label>
+    <input type="text" id="snackCalories" data-ng-model="snack.calories" placeholder="5000!!">
+
+    <button type="submit">{{buttonText}}</button>
+  </form>
+  <ng-transclude></ng-transclude>
+</div>

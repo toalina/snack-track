@@ -1,0 +1,34 @@
+<section data-ng-init="getAll()">
+  <ul id="errorslist">
+    <li data-ng-repeat="error in errors">
+      {{error}}
+    </li>
+  </ul>
+
+  <div data-sweet-form-directive
+  data-button-text="Create New Sweet"
+  data-form-name="newSweetForm"
+  data-heading-text="Create a New Sweet"
+  data-sweet="newSweet"
+  data-save="create(sweet)">
+
+  </div>
+
+  <div data-list-directive data-title="sweets">
+    <li data-ng-repeat="sweet in sweets">
+      <div data-sweet-directive data-sweet="sweet"></div>
+      <div data-sweet-form-directive
+      data-ng-if="sweet.editing"
+      data-button-text="Save Sweet!"
+      data-form-name="edit{{sweet._id}}"
+      data-sweet="sweet"
+      data-heading-text="Editing {{sweet.name}}"
+      data-save="update(sweet)">
+      <button data-ng-click="sweet.editing=false">Cancel</button>
+    </div>
+    <button data-ng-if="!sweet.editing" data-ng-click="sweet.editing=true"> Edit this Sweet</button>
+    <button data-ng-if="!sweet.editing" data-ng-click="remove(sweet)"> Delete this Sweet</button>
+    </li>
+  </div>
+
+</section>
